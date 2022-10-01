@@ -1,28 +1,15 @@
-function retornoPromessa1(response) {
-  return response.json();
+function retornoPromessaFetch(resposta) {
+  let promessaBody = resposta.json();
+  return promessaBody;
 }
-function retornoPromessa2(body) {
-  console.log(body);
+
+function retornoPromessaBody(body) {
+    body.forEach(function (pessoa) {
+      console.log(pessoa);
+      lista.innerHTML = lista.innerHTML + "<li>" + pessoa.nome + "</li>";
+    });
 }
-let promessa1 = fetch("https://633867b7937ea77bfdbf9c86.mockapi.io/pessoa"); //promessa1
-console.log(promessa1);
-let promessa2 = promessa1.then(retornoPromessa1); //promessa2
-console.log(promessa2);
-promessa2.then(retornoPromessa2);
 
-// let generica;
-// fetch("https://633867b7937ea77bfdbf9c86.mockapi.io/pessoa")
-//   .then(function (response) {
-//     //magica => transforma o body da response em uma nova promessa
-//     return response.json();
-//   })
-//   .then(function (body) {
-//     // body = corpo = conteudo json da response
-//     console.log("body", body);
-//     generica = body;
-//   });
-// console.log('generica', generica);
+let promessa = fetch("https://633867b7937ea77bfdbf9c86.mockapi.io/pessoa");
 
-// setTimeout(function(){
-//     console.log('generica no settimeout', generica)
-// }, 200)
+promessa.then(retornoPromessaFetch).then(retornoPromessaBody);
